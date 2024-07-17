@@ -1,0 +1,13 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    docker build --build-arg REVISION=$COMMIT_SHA -f Dockerfile .
+
+timeout: 3600s
+
+images:
+- '${_DOCKER_REPO}:$COMMIT_SHA'
+- '${_DOCKER_REPO}:latest'
