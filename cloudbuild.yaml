@@ -5,8 +5,8 @@ steps:
   - '-c'
   - |
     docker build --build-arg REVISION=$COMMIT_SHA -f Dockerfile .
-
-timeout: 3600s
+  env:
+    DOCKER_BUILDKIT: 1
 
 images:
 - '${_DOCKER_REPO}:$COMMIT_SHA'
